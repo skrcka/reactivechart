@@ -1,6 +1,9 @@
-import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from 'react';
+import logo from './logo.svg';
+import axios from 'axios';
+import './App.css';
+
+const API_URL = 'HTTP://192.168.137.180:5337';
 
 function App() {
     return (
@@ -12,7 +15,7 @@ function App() {
                     alt='logo'
                 />
                 <p>
-                    Helloo
+                    Helloo xd
                 </p>
                 <a
                     className='App-link'
@@ -24,7 +27,7 @@ function App() {
                 </a>
             </header>
         </div>
-    )
+    );
 }
 
-export default App
+export default App;
