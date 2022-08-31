@@ -1,11 +1,25 @@
-import React from 'react';
+import React, {
+    useState, useEffect,
+} from 'react';
 import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
 
-const API_URL = 'HTTP://192.168.137.180:5337';
+const API_URL = 'http://localhost:5337';
 
 function App() {
+    const [
+        data,
+        setData,
+    ] = useState('data');
+
+    useEffect(() => {
+        axios.get(API_URL).then( result => {
+            console.log('xd');
+            setData(result.data);
+        });
+    }, []);
+
     return (
         <div className='App'>
             <header className='App-header'>
@@ -15,7 +29,7 @@ function App() {
                     alt='logo'
                 />
                 <p>
-                    Helloo xd
+                    {data}
                 </p>
                 <a
                     className='App-link'
