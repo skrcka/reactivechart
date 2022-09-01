@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
 
-const API_URL = 'http://localhost:5337';
+const API_URL = 'http://127.0.0.1/server';
 
 function App() {
     const [

@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run -d -p 5338:5338 -v ${PWD}:/app reactivechart
+docker run -d -v ${PWD}:/app --name reactivechart --network=chart reactivechart
