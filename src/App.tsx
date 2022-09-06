@@ -15,7 +15,6 @@ function App() {
 
     useEffect(() => {
         axios.get(API_URL).then( result => {
-            console.log('xd');
             setData(result.data);
         });
     }, []);
