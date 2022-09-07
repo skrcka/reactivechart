@@ -11,7 +11,7 @@ function App() {
     const [
         data,
         setData,
-    ] = useState('data');
+    ] = useState('');
 
     useEffect(() => {
         axios.get(API_URL).then( result => {
