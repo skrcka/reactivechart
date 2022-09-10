@@ -10,6 +10,7 @@ const API_URL = DEBUG ? 'http://127.0.0.1:5337' : 'http://127.0.0.1/server';
 
 interface Data {
     test: string
+    file: boolean
 }
 
 function App() {
@@ -58,18 +59,24 @@ function App() {
     return (
         <div className='App'>
             <header className='App-header'>
-                <FileUploader handleFileUpload={uploadFile}></FileUploader>
-                <p>
-                    {data ? data.test : ''}
-                </p>
-                <a
-                    className='App-link'
-                    href='https://reactjs.org'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    Learn React
-                </a>
+                {data &&
+                    <>
+                        {!data.file &&
+                            <FileUploader handleFileUpload={uploadFile}></FileUploader>
+                        }
+                        <p>
+                            {data.test}
+                        </p>
+                        <a
+                            className='App-link'
+                            href='https://reactjs.org'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            Learn React
+                        </a>
+                    </>
+                }
             </header>
         </div>
     );
