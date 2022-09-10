@@ -130,7 +130,8 @@
         "react/no-unused-state": "warn",
         "react/no-will-update-set-state": "warn",
         "react/prop-types": "warn",
-        "no-unused-vars": "warn",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["warn"],
         "react/prefer-es6-class": [
             "warn",
             "always"
