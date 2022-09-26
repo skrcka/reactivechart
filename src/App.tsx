@@ -64,7 +64,7 @@ function App() {
                         {!data.file &&
                             <FileUploader handleFileUpload={uploadFile}></FileUploader>
                         }
-                        <p>
+                        <p data-testid='data'>
                             {data.test}
                         </p>
                     </>
