@@ -21,11 +21,15 @@ const FileUploader = ({ handleFileUpload }: Props) => {
 
     return (
         <>
-            <button onClick={handleClick}>
+            <button
+                data-testid='fileuploader-button'
+                onClick={handleClick}
+            >
                 Upload a file
             </button>
             <input
                 type="file"
+                data-testid='fileuploader-field'
                 ref={hiddenFileInput}
                 onChange={handleChange}
                 style={{ display: 'none' }}

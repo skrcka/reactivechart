@@ -12,8 +12,8 @@ const API_URL = DEBUG ? 'http://127.0.0.1:5337' : 'http://127.0.0.1/server';
 const REFRESH_TIMEOUT = 5;
 
 interface RData {
-    names: Array<string>
-    vectors: Array<Array<number | string | boolean>>
+    Names: Array<string>
+    Vectors: Array<Array<number | string | boolean>>
 }
 interface Data {
     RData: RData
@@ -111,7 +111,7 @@ function App() {
                     <>
                         {!data.File &&
                             <>
-                                <h2>Upload file</h2>
+                                <h2 data-testid='app-step-title'>Upload a file</h2>
                                 <FileUploader handleFileUpload={uploadFile}></FileUploader>
                             </>
                         }
@@ -119,13 +119,18 @@ function App() {
                             <>
                                 {!data.Func &&
                                     <>
-                                        <h2>Choose function</h2>
-                                        <button onClick={() => getFunction('histogram')}>Histogram</button>
+                                        <h2 data-testid='app-step-title'>Choose a function</h2>
+                                        <button
+                                            data-testid='app-step-func-hist'
+                                            onClick={() => getFunction('histogram')}
+                                        >
+                                            Histogram
+                                        </button>
                                     </>
                                 }
                                 {data.Func &&
                                     <>
-                                        <h2>Good</h2>
+                                        <h2 data-testid='app-step-title'>Good</h2>
                                     </>
                                 }
                             </>
@@ -134,7 +139,9 @@ function App() {
                 }
                 {!data &&
                     <>
-                        <h2>Cannot establish connection to server. {refreshTimeout !== null ? `Retrying in ${refreshTimeout}...` : ''}</h2>
+                        <h2 data-testid='app-step-title'>
+                            Cannot establish connection to server. {refreshTimeout !== null ? `Retrying in ${refreshTimeout}...` : ''}
+                        </h2>
                     </>
                 }
             </header>
