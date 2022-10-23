@@ -112,7 +112,10 @@ function App() {
                         {!data.File &&
                             <>
                                 <h2 data-testid='app-step-title'>Upload a file</h2>
-                                <FileUploader handleFileUpload={uploadFile}></FileUploader>
+                                <FileUploader
+                                    handleFileUpload={uploadFile}
+                                    targetResizeHeight={480}
+                                ></FileUploader>
                             </>
                         }
                         {data.File &&
