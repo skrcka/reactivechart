@@ -4,7 +4,9 @@ import React, {
 import axios from 'axios';
 import { Button } from 'reactstrap';
 
+import { Data } from './Data';
 import FileUploader from './components/FileUploader';
+import Histogram from './components/Histogram';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,15 +17,6 @@ const API_URL = DEBUG ? 'http://127.0.0.1:5337' : 'http://127.0.0.1/server';
 
 const REFRESH_TIMEOUT = 5;
 
-interface RData {
-    Names: Array<string>
-    Vectors: Array<Array<number | string | boolean>>
-}
-interface Data {
-    RData: RData
-    File: boolean
-    Func: string
-}
 
 function App() {
     const [
@@ -103,6 +96,7 @@ function App() {
             .get<Data | null>(API_URL)
             .then(res => {
                 if(res.data) {
+                    console.log(res.data);
                     setData(res.data);
                 }
             })
@@ -139,7 +133,8 @@ function App() {
     return (
         <div className='App'>
             <header className='App-header'>
-                {data &&
+                <div className='container-lg'>
+                    {data &&
                     <>
                         {!data.File &&
                             <>
@@ -159,6 +154,7 @@ function App() {
                                             data-testid='app-step-func-hist'
                                             onClick={() => getFunction('histogram')}
                                             color="primary"
+                                            className='m-1'
                                         >
                                             Histogram
                                         </Button>
@@ -166,6 +162,7 @@ function App() {
                                             data-testid='app-step-func-reset'
                                             onClick={() => reset()}
                                             color="danger"
+                                            className='m-1'
                                         >
                                             Reset
                                         </Button>
@@ -173,11 +170,15 @@ function App() {
                                 }
                                 {data.Func &&
                                     <>
-                                        <h2 data-testid='app-step-title'>Good</h2>
+                                        <h2 data-testid='app-step-title'>Function: {data.Func}</h2>
+                                        {data.Func === 'histogram' &&
+                                            <Histogram data={data.RData} />
+                                        }
                                         <Button
                                             data-testid='app-step-func-back'
                                             onClick={() => resetfn()}
                                             color="warning"
+                                            className='m-1'
                                         >
                                             Back
                                         </Button>
@@ -185,6 +186,7 @@ function App() {
                                             data-testid='app-step-func-reset'
                                             onClick={() => reset()}
                                             color="danger"
+                                            className='m-1'
                                         >
                                             Reset
                                         </Button>
@@ -193,14 +195,15 @@ function App() {
                             </>
                         }
                     </>
-                }
-                {!data &&
+                    }
+                    {!data &&
                     <>
                         <h2 data-testid='app-step-title'>
                             Cannot establish connection to server. {refreshTimeout !== null ? `Retrying in ${refreshTimeout}...` : ''}
                         </h2>
                     </>
-                }
+                    }
+                </div>
             </header>
         </div>
     );
