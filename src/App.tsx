@@ -2,11 +2,11 @@ import React, {
     useState, useEffect,
 } from 'react';
 import axios from 'axios';
-import './App.css';
 import { Button } from 'reactstrap';
 
 import FileUploader from './components/FileUploader';
 
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
