@@ -3,7 +3,11 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import './App.css';
+import { Button } from 'reactstrap';
+
 import FileUploader from './components/FileUploader';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const DEBUG = true;
@@ -55,6 +59,34 @@ function App() {
         }
         axios
             .get(`${API_URL}/${func}`)
+            .then(() => {
+                setTimeout(fetchData);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    };
+
+    const reset = () => {
+        if (DEBUG) {
+            console.log('reset');
+        }
+        axios
+            .get(`${API_URL}/reset`)
+            .then(() => {
+                setTimeout(fetchData);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    };
+
+    const resetfn = () => {
+        if (DEBUG) {
+            console.log('resetfn');
+        }
+        axios
+            .get(`${API_URL}/resetfn`)
             .then(() => {
                 setTimeout(fetchData);
             })
@@ -123,17 +155,39 @@ function App() {
                                 {!data.Func &&
                                     <>
                                         <h2 data-testid='app-step-title'>Choose a function</h2>
-                                        <button
+                                        <Button
                                             data-testid='app-step-func-hist'
                                             onClick={() => getFunction('histogram')}
+                                            color="primary"
                                         >
                                             Histogram
-                                        </button>
+                                        </Button>
+                                        <Button
+                                            data-testid='app-step-func-reset'
+                                            onClick={() => reset()}
+                                            color="danger"
+                                        >
+                                            Reset
+                                        </Button>
                                     </>
                                 }
                                 {data.Func &&
                                     <>
                                         <h2 data-testid='app-step-title'>Good</h2>
+                                        <Button
+                                            data-testid='app-step-func-back'
+                                            onClick={() => resetfn()}
+                                            color="warning"
+                                        >
+                                            Back
+                                        </Button>
+                                        <Button
+                                            data-testid='app-step-func-reset'
+                                            onClick={() => reset()}
+                                            color="danger"
+                                        >
+                                            Reset
+                                        </Button>
                                     </>
                                 }
                             </>

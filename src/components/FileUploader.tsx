@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from 'reactstrap';
+
 
 interface Props {
     handleFileUpload: (file: File) => void
@@ -64,12 +66,13 @@ const FileUploader = ({
 
     return (
         <>
-            <button
+            <Button
                 data-testid='fileuploader-button'
                 onClick={handleClick}
+                color='primary'
             >
                 Upload a file
-            </button>
+            </Button>
             <input
                 type="file"
                 accept="image/*"
